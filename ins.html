@@ -1,0 +1,36 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>ajax返回字符</title>
+<script src="jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+function showHint(str){
+var selectobj = '#test';
+//if($('#txt1').value.length>6){
+$.get("hint.php","q="+str, function(data){
+		$(selectobj).empty();
+		//$("<option value='0'>==请选择==</option>").appendTo(selectobj);
+        if(data!=""){
+            var arr=data.split(';');
+			var txt="";
+            for(var i=0;i<arr.length-1;i++){
+				if(i==0) txt+="<option value='"+arr[i].split(',')[0]+"' selected>"+arr[i].split(',')[0]+' - '+arr[i].split(',')[1]+"</option>";
+				else txt+="<option value='"+arr[i].split(',')[0]+"'>"+arr[i].split(',')[0]+' - '+arr[i].split(',')[1]+"</option>";
+            }
+			$(txt).appendTo(selectobj);
+        }
+    });
+}
+//}
+</script>
+</head>
+<body>
+<h3>请在下面的输入框中键入供应商名字部分字段：</h3>
+<form action="test.php" method="post"> 
+供应商：<input type="text" id="txt1" onChange="showHint(this.value)" />
+<p>建议：</p>
+<select name="test" id="test"></select><br />
+<input type="submit" value="测试提交" />
+</form>
+</body>
+</html>
