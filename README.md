@@ -1,5 +1,5 @@
-#ajax
+# ajax
+Ajax简单示例, 基于jQuery.
 
-#hell davee
-
-#this is a test.
+1. 介绍get/post方式的ajax使用.
+2. 输入提示效果: 配合PHP+XML.
